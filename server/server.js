@@ -28,6 +28,11 @@ socket.emit('newMessage',{
 });
   socket.on('createMessage',(message) =>{
     console.log('Create Message ',message);
+    io.emit('newMessage',{
+      from:message.from,
+      text:message.text,
+      createdAt:new Date().getTime()
+    });
   });
 
   socket.on('disconnect',() => {
