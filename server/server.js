@@ -12,10 +12,28 @@ var io = socketIO(server);
 io.on('connection',(socket) => {
   console.log("New user connected");
 
+  // socket.emit('newEmail',{
+  //   from:"abc@example.com",
+  //   test:"Hi How are you",
+  //   createAt:123
+  //
+  // });
+  // socket.on('createEmail',(newEmail) => {
+  //   console.log('createEmail ',newEmail);
+  // });
+socket.emit('newMessage',{
+  from:'ramya',
+  text:'m good',
+  createdAt:123123
+});
+  socket.on('createMessage',(message) =>{
+    console.log('Create Message ',message);
+  });
+
   socket.on('disconnect',() => {
     console.log('User was Disconnected');
-  })
-})
+  });
+});
 
 app.use(express.static(publicPath));
 server.listen(port,() =>{
